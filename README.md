@@ -7,7 +7,7 @@ This repository contains code for testing the AWS Bedrock Knowledge Base product
 Amazon Bedrock Knowledge Bases is a fully managed service that enables you to build Retrieval Augmented Generation (RAG) applications. It provides serverless vector storage using OpenSearch Serverless, automatic document chunking and embedding, and seamless integration with foundation models for question-answering. Knowledge Bases handle the infrastructure complexity of RAG systems, allowing you to focus on building AI applications that can query and reason over your private data.
 
 ## Date
-Aptil 3, 2026
+April 6, 2026
 
 ## Dataset
 
