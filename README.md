@@ -1,49 +1,79 @@
-# RAG Search Testing with AWS Bedrock Knowledge Base
+# RAG Search Testing
 
-This repository contains code for testing the AWS Bedrock Knowledge Base product using a standardized RAG evaluation dataset.
+This repository evaluates turnkey RAG (Retrieval Augmented Generation) solutions from AWS and GCP, provides working code examples for practitioners, and explores techniques for improving retrieval quality and user experience.
 
-## About AWS Bedrock Knowledge Base
+## Project Objectives
 
-Amazon Bedrock Knowledge Bases is a fully managed service that enables you to build Retrieval Augmented Generation (RAG) applications. It provides serverless vector storage using OpenSearch Serverless, automatic document chunking and embedding, and seamless integration with foundation models for question-answering. Knowledge Bases handle the infrastructure complexity of RAG systems, allowing you to focus on building AI applications that can query and reason over your private data.
+### 1. Evaluate Turnkey RAG Solutions
+Compare AWS Bedrock Knowledge Base and GCP Vertex AI Search across two dimensions:
+- **Ease of deployment** — time and complexity required to go from raw documents to a working RAG endpoint, including infrastructure setup, permissions, and data ingestion
+- **Quality of responses** — accuracy of document retrieval and relevance of generated answers against a standardized evaluation dataset
 
-## Date
-May 5, 2026
+### 2. Provide Jumpstart Code Examples
+All code is written to be readable and reusable. Each cloud implementation is self-contained in its own directory, with modular Python utilities that can be adapted to other projects. Notebooks walk through every step of the pipeline from data loading to querying, making it straightforward to adapt the code for a new dataset or cloud environment.
 
-## Dataset
+### 3. Explore Techniques for Improving RAG Responses
+Beyond baseline RAG, the notebooks investigate techniques that can improve retrieval and answer quality:
+- **Metadata filtering** — constraining search to specific documents or document types to reduce noise
+- **Passage-level chunking** — splitting documents into semantic segments to improve retrieval precision
+- **Direct AI generation** — bypassing retrieval entirely and feeding source text directly to the model, providing an upper-bound benchmark for answer quality
 
-This project uses the **Single-Topic RAG Evaluation Dataset** from Kaggle ([link](https://www.kaggle.com/datasets/samuelmatsuoharris/single-topic-rag-evaluation-dataset)).
+### 4. Identify the Best Use of Time for Technology and Subject Matter Experts
+A key question for any RAG initiative is where human expertise has the highest leverage. This project surfaces data points to help answer that question: which failure modes require infrastructure tuning vs. better document preparation vs. prompt engineering, and which tasks can be handled by a developer vs. those that benefit from a domain expert's involvement.
 
-This dataset was designed to evaluate the performance of RAG AI querying text documents about a single topic with word counts ranging from a few thousand to a few tens of thousands, such as articles, blogs, and documentation. The sources were intentionally chosen to have been produced within the last few years (from the time of writing in July 2024) and to be relatively niche, to reduce the chance of evaluated LLMs including this information in their training datasets.
+### 5. Explore UI/UX Enhancements for RAG
+The project considers how UI features can complement RAG solutions to improve both the user experience and the quality of RAG components — for example, how faceted search controls, citation displays, and confidence indicators can help users interpret and refine results, and how structured user interactions can provide feedback signals for improving retrieval.
 
-**Dataset Composition:**
-- **120 question-answer pairs** total
-- **40 questions** that do not have an answer within the document
-- **40 question-answer pairs** that require a single passage from the document
-- **40 question-answer pairs** that require multiple passages from the document
+---
 
-## Notebooks
+## Repository Structure
 
-### `S10_load_data_s3.ipynb`
-Loads the RAG evaluation dataset to Amazon S3 in a Bedrock-compatible format. This notebook:
-- Reads the local CSV files containing documents and questions
-- Adds metadata attributes (source type, document index) to enable filtering
-- Annotates documents with passage numbers for better retrieval tracking
-- Uploads documents and metadata sidecars to S3
+```
+rag_search/
+├── data/
+│   └── rag_eval_dataset/          # Shared evaluation dataset (CSV + metadata JSON)
+├── aws_bedrock/                   # AWS Bedrock Knowledge Base implementation
+│   ├── README.md
+│   ├── S10_load_data_s3.ipynb
+│   ├── S20_build_bedrock_knowledgebase.ipynb
+│   ├── S30_search_bedrock_knowledgebase.ipynb
+│   ├── s3_data_load.py
+│   ├── bedrock_kb_security_build.py
+│   ├── bedrock_kb_build.py
+│   └── bedrock_kb_query.py
+└── gcp_vertexai/                  # GCP Vertex AI Search implementation
+    ├── README.md
+    ├── S10_load_data_bq.ipynb
+    ├── S12_load_data_gcs.ipynb
+    ├── S20_build_vertexai_search_app.ipynb
+    ├── S30_query_vertexai_searchapp.ipynb
+    ├── gcs_data_load.py
+    ├── vai_search_app_build.py
+    └── vai_search_app_query.py
+```
 
-### `S20_build_bedrock_knowledgebase.ipynb`
-Creates and configures the AWS Bedrock Knowledge Base infrastructure. This notebook:
-- Sets up OpenSearch Serverless collection with security policies
-- Creates IAM roles and permissions for Bedrock access
-- Creates the Knowledge Base with vector embeddings using Amazon Titan
-- Configures the S3 data source
-- Initiates and monitors the document ingestion process
+Each cloud directory contains its own `README.md` with detailed descriptions of every notebook and Python module, authentication setup, and configuration parameters.
 
-### `S30_search_bedrock_knowledgebase.ipynb`
-Queries the Knowledge Base and evaluates retrieval performance. This notebook:
-- Loads the test questions (no-answer, single-passage, and multi-passage)
-- Performs retrieval queries against the Knowledge Base
-- Analyzes search results including document counts and relevance scores
-- Evaluates the system's ability to handle different question types
+---
+
+## Evaluation Dataset
+
+Both implementations are tested against the **Single-Topic RAG Evaluation Dataset** originally created by Samuel Matsuo Harris, available on [Kaggle](https://www.kaggle.com/datasets/samuelmatsuoharris/single-topic-rag-evaluation-dataset).
+
+The dataset contains 120 question-answer pairs across 20 documents, designed to test three retrieval scenarios:
+- Questions with **no answer** in the document corpus (40)
+- Questions requiring a **single passage** from one document (40)
+- Questions requiring **multiple passages** from one document (40)
+
+---
+
+## Cloud Implementations
+
+### AWS Bedrock Knowledge Base
+Located in `aws_bedrock/`. Uses Amazon Bedrock Knowledge Bases backed by OpenSearch Serverless with Amazon Titan Embed Text v2 embeddings. Documents are stored in S3 with JSON metadata sidecars. See [`aws_bedrock/README.md`](aws_bedrock/README.md) for details.
+
+### GCP Vertex AI Search
+Located in `gcp_vertexai/`. Uses Google Cloud Vertex AI Search with Enterprise tier and LLM add-on. Documents are stored in GCS and optionally indexed in BigQuery. The search engine is configured with a custom schema enabling metadata filtering and faceted navigation. See [`gcp_vertexai/README.md`](gcp_vertexai/README.md) for details.
 
 ---
 

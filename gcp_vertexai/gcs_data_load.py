@@ -1,6 +1,6 @@
 # Numantic Solutions | April 2026
-# Module: Vertex AI Search Management Utilities
-# Code for creating a Vertex AI Search App
+# Module: GCS Data Load
+# Code for loading documents to Google Cloud Storage
 #
 # Initialize GCS client globally or within your orchestration script
 # storage_client = storage.Client()
@@ -113,3 +113,5 @@ def process_and_upload_gcp(df,
     )
 
     print(f"Success: Uploaded {len(metadata_records)} documents and manifest to {key_prefix}")
+
+
