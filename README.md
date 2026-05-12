@@ -29,10 +29,6 @@ AWS_ACCOUNT_ID=<your-aws-account-id>
 AWS_REGION=<your-aws-region>
 AWS_PROFILE=<your-aws-cli-profile-name>
 
-# S3 Configuration
-S3_BUCKET=<your-s3-bucket-name>
-S3_PREFIX=<your-s3-prefix-with-trailing-slash>/
-
 # Bedrock / OpenSearch Configuration
 COLLECTION_NAME=<your-opensearch-collection-name>
 KB_NAME=<your-knowledge-base-name>
@@ -42,6 +38,17 @@ EMBEDDING_MODEL=amazon.titan-embed-text-v2:0
 
 # Knowledge Base ID (generated on creation — update after rebuilding)
 KB_ID=<your-knowledge-base-id>
+
+# S3 Configuration
+S3_BUCKET=<your-s3-bucket-name>
+S3_PREFIX=<your-s3-prefix-with-trailing-slash>/
+
+# Data file paths
+INPUT_DATA_PATH=../data/rag_eval_dataset
+DOCS_FILENAME=documents.csv
+MULTI_PAS_QS=multi_passage_answer_questions.csv
+NO_ANSWER_QS=no_answer_questions.csv
+SINGLE_PAS_ANSWER_QS=single_passage_answer_questions.csv
 ```
 
 `AWS_PROFILE` refers to a named profile in your `~/.aws/credentials` file. If you have not configured named profiles, use `default`.
