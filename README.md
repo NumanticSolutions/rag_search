@@ -6,6 +6,9 @@
 
 This repository evaluates turnkey RAG (Retrieval Augmented Generation) solutions from AWS and GCP, provides working code examples for practitioners, and explores techniques for improving retrieval quality and user experience.
 
+## Date
+- May 14, 2026
+
 ## Project Objectives
 
 ### 1. Evaluate Turnkey RAG Solutions
@@ -26,9 +29,9 @@ Because RAG tools often operate a large amounts of unstructured data and measuri
 ## Resources
 
 ### Production Deployments
-| **Presentation Covering the Work**                                                                                                                                                                                                      | **Test Questions and RAG responses**                                                                                                                                                                                                                                                                       |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <div style="text-align: center;"><a href="./data/images/RAG_Platform_Tests_V1.pdf"><img src="./data/images/presentation_page_1.png" alt="CCC Policy Assistant" width="450" height="300"><p>Click to view the presentation</p></a></div> | <div style="text-align: center;"><a href="https://docs.google.com/spreadsheets/d/1eXTQMtT6YsKCSbpxKjGMv24B3E7aR-WDd6dB-zlkVkc/edit?usp=sharing"><img src="./data/images/RAG_test_questions_responses.png" alt="CCC Policy Assistant" width="450" height="300"><p>Click to see test questions</p></a></div> |
+| **Presentation Covering the Work**                                                                                                                                                                                                        | **Test Questions and RAG responses**                                                                                                                                                                                                                                                                       | **Source Documents**                                                                                                                                                                                                                                                                             |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <div style="text-align: center;"><a href="./data/images/RAG_Platform_Tests_V1.5.pdf"><img src="./data/images/presentation_page_1.png" alt="CCC Policy Assistant" width="450" height="300"><p>Click to view the presentation</p></a></div> | <div style="text-align: center;"><a href="https://docs.google.com/spreadsheets/d/1eXTQMtT6YsKCSbpxKjGMv24B3E7aR-WDd6dB-zlkVkc/edit?usp=sharing"><img src="./data/images/RAG_test_questions_responses.png" alt="CCC Policy Assistant" width="450" height="300"><p>Click to see test questions</p></a></div> |  <div style="text-align: center;"><a href="https://docs.google.com/spreadsheets/d/1NEd1bdR9x7qXZVcYKICHSkon6hDRLGtuPuxlWxPuq2E/edit?gid=0#gid=0"><img src="./data/images/Source_documents.png" alt="CCC Policy Assistant" width="450" height="300"><p>Click to see source documents</p></a></div>|
 
 
 ---
